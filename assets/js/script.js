@@ -1,5 +1,6 @@
 //Get current day and display it in the header
-
+var today = moment().format("dddd, MMMM, Do");
+var currentDay = $("#currentDay").text(today);
 
 //color code the blocks to according to time of day
 //past
