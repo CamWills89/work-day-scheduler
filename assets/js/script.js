@@ -42,7 +42,7 @@ var getText = function () {
 
 var saveText = function () {
   $(".time-block").on("click", ".saveBtn", function () {
-    var text = $(".time-block textarea").val()
+    var text = $(this).siblings("textarea").val();
     
     console.log(text);
 
