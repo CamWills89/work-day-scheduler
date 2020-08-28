@@ -37,22 +37,36 @@ var getText = function () {
     var text = $(this).text().trim();
     console.log(text);
   });
+
   saveText();
 };
 
 var saveText = function () {
+  var userEvent = JSON.parse(localStorage.getItem("text"));
+
+  if (!userEvent) {
+    userEvent = [];
+  }
   $(".time-block").on("click", ".saveBtn", function () {
     var text = $(this).siblings("textarea").val();
-    
+
     console.log(text);
 
-    var status = $(this)
-    .closest(".time-block")
-    .attr("id");
-    console.log(status);
+    var currentEvent = {
+      text: text,
+    };
 
-    var index = $(this).closest(".time-block").index();
-    console.log(index);
+    userEvent.push(currentEvent);
+
+    localStorage.setItem("text", JSON.stringify(userEvent));
+
+    //     var status = $(this)
+    //     .closest(".time-block")
+    //     .attr("id");
+    //     console.log(status);
+
+    //     var index = $(this).closest(".time-block").index();
+    //     console.log(index);
   });
 };
 
