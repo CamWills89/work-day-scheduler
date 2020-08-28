@@ -2,42 +2,73 @@
 var today = moment().format("dddd, MMMM, Do");
 var currentDay = $("#currentDay").text(today);
 
+
 //color code the blocks to according to time of day
 //past
 //present
 //future
+function hourTracker() {
+  //get current number of hours.
+  var currentHour = moment().hour();
 
+  // loop over time blocks
+  $(".time-block").each(function () {
+      var hour = $(this).attr("id");
+      console.log( hour, currentHour)
+
+      //check if we've moved past this timeblock
+      if (hour < currentHour) {
+          $(this).addClass("past");
+          $(this).removeClass("future");
+          $(this).removeClass("present");
+      }
+      //if we are in this timeblock
+      else if (hour === currentHour) {
+          $(this).removeClass("past");
+          $(this).addClass("present");
+          $(this).removeClass("future");
+      }
+      //if we have not yet reached this timeblock
+      else {
+          $(this).removeClass("present");
+          $(this).removeClass("past");
+          $(this).addClass("future");
+      }
+  })
+}
+hourTracker();
+
+//load page and display any saved tasks
 var loadEvent = function () {
   var userEvent = JSON.parse(localStorage.getItem("userEvent")) || {};
-console.log(userEvent);
+// console.log(userEvent.text);
 // debugger;
-for (let i = 0; i < userEvent.length; i++) {
-  $(".time-block#" + userEvent[i].id + "textarea").text(userEvent[i].text);
+
+  for (let i = 0; i < userEvent.length; i++) {
+    $(".time-block" + userEvent[i].id + "textarea").text(userEvent[i].text);
   }
 };
 
+//save any tasks to local storge when save button is clicked
 var saveText = function () {
-  var userEvent = JSON.parse(localStorage.getItem("userEvent")) || {};
-
   $(".time-block").on("click", ".saveBtn", function () {
+    var userEvent = JSON.parse(localStorage.getItem("userEvent")) || {};
 
     var text = $(this).siblings("textarea").val();
     var id = $(this).closest(".time-block").attr("id");
   
-    // var currentEvent = {
-    //   text: text,
-    //   id: id
-    // };
+    var userEvent = {
+      text: text,
+      id: id
+    };
     
     userEvent[id] = text;
-    //previously had it as an array
     // userEvent.push(currentEvent)
 
     localStorage.setItem("userEvent", JSON.stringify(userEvent));
   });
 };
 
+
 loadEvent();
 saveText();
-
-
