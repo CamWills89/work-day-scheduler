@@ -27,7 +27,7 @@ console.log(userEvent);
 
   for (let i = 0; i < userEvent.length; i++) {
     // var listedEvent = $(".time-block").siblings("textarea");
-    $(".time-block textarea").text(userEvent[i]);
+    $(".time-block textarea").text(userEvent[i].text);
     // $(".time-block").siblings("textarea").append(userEvent[i])
   }
   // $.each(userEvent, function(arr){
