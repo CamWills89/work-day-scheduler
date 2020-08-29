@@ -2,56 +2,18 @@
 var today = moment().format("dddd, MMMM, Do");
 var currentDay = $("#currentDay").text(today);
 
-
 //color code the blocks to according to time of day
-//past
-//present
-//future
-function hourTracker() {
-  //get current number of hours.
+function checkTime() {
+  //get current time in hours
   var currentHour = moment().hour();
   console.log(currentHour)
 
-<<<<<<< HEAD
-// var setEvent = function () {
-//   $(".saveBtn").click(function () {
-//     var text = $("#time-9 textarea").val();
-//     console.log(text);
-
-//     var userEvent = {
-//       text: text,
-//     };
-
-//     localStorage.setItem("userEvent", JSON.stringify(userEvent));
-//   });
-// };
-
-var loadEvent = function () {
-  var userEvent = JSON.parse(localStorage.getItem("userEvent"));
-  if (!userEvent) {
-    userEvent = [];
-  }
-  console.log(userEvent)
-
-  if (userEvent) {
-    text.textContent = userEvent.text;
-  }
-
-};
-//this will let me select all the textareas
-var getText = function () {
-  $(".time-block").on("click", "textarea", function () {
-    var text = $(this).text().trim();
-    console.log(text);
-  });
-  saveText();
-=======
   // loop over time blocks
   $(".time-block").each(function () {
     
-    var hour = parseInt($(this).attr("id"))
-      console.log(this)
-      // console.log(hour)
+    var hour = parseInt($(this).attr("id").split("time")[1])
+      // console.log(this)
+      console.log(hour)
 
       //check if we've moved past this timeblock
       if (hour < currentHour) {
@@ -73,60 +35,47 @@ var getText = function () {
       }
   })
 }
-hourTracker();
 
-//load page and display any saved tasks
-var loadEvent = function () {
-  var userEvent = JSON.parse(localStorage.getItem("userEvent")) || {};
-// console.log(userEvent.text);
-// debugger;
+  $(".saveBtn").on("click", function () {
+    var id = $(this).parent().attr("id");
+    var text = $(this).siblings(".description").val();
 
-  for (let i = 0; i < userEvent.length; i++) {
-    $(".time-block" + userEvent[i].id + "textarea").text(userEvent[i].text);
-  }
->>>>>>> 505bbfc65eadd6da66f57d0d907dc23d572dd2e8
-};
-
-//save any tasks to local storge when save button is clicked
-var saveText = function () {
-  $(".time-block").on("click", ".saveBtn", function () {
-    var userEvent = JSON.parse(localStorage.getItem("userEvent")) || {};
-
-    var text = $(this).siblings("textarea").val();
-    var id = $(this).closest(".time-block").attr("id");
-  
-    var userEvent = {
-      text: text,
-      id: id
-    };
-    
-<<<<<<< HEAD
-    console.log(text);
-
-    var userEvent = {
-      text: text,
-    };
-
-    localStorage.setItem("userEvent", JSON.stringify(userEvent));
-
-    // var status = $(this)
-    // .closest(".time-block")
-    // .attr("id");
-    // console.log(status);
-
-    // var index = $(this).closest(".time-block").index();
-    // console.log(index);
-=======
-    userEvent[id] = text;
-    // userEvent.push(currentEvent)
-
-    localStorage.setItem("userEvent", JSON.stringify(userEvent));
->>>>>>> 505bbfc65eadd6da66f57d0d907dc23d572dd2e8
+    localStorage.setItem(id, text);
   });
-};
 
-loadEvent();
-saveText();
+$("#time9 .description").val(localStorage.getItem("time9"));
+$("#time10 .description").val(localStorage.getItem("time10"));
+$("#time11 .description").val(localStorage.getItem("time11"));
+$("#time12 .description").val(localStorage.getItem("time12"));
+$("#time13 .description").val(localStorage.getItem("time13"));
+$("#time14 .description").val(localStorage.getItem("time14"));
+$("#time15 .description").val(localStorage.getItem("time15"));
+$("#time16 .description").val(localStorage.getItem("time16"));
+$("#time17 .description").val(localStorage.getItem("time17"));
+
+checkTime();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
