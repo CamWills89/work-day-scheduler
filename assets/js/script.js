@@ -10,11 +10,14 @@ var currentDay = $("#currentDay").text(today);
 function hourTracker() {
   //get current number of hours.
   var currentHour = moment().hour();
+  console.log(currentHour)
 
   // loop over time blocks
   $(".time-block").each(function () {
-      var hour = $(this).attr("id");
-      console.log( hour, currentHour)
+    
+    var hour = parseInt($(this).attr("id"))
+      console.log(this)
+      // console.log(hour)
 
       //check if we've moved past this timeblock
       if (hour < currentHour) {
@@ -69,6 +72,37 @@ var saveText = function () {
   });
 };
 
-
 loadEvent();
 saveText();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var hour = parseInt($(this).attr("id").split("time")[1]);
