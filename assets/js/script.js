@@ -20,17 +20,18 @@ var currentDay = $("#currentDay").text(today);
 //   });
 // };
 
-// var loadEvent = function () {
-//   var userEvent = JSON.parse(localStorage.getItem("userEvent"));
-//   if (!userEvent) {
-//     userEvent = [];
-//   }
-//   if (userEvent) {
-//     $("#time-9 textarea").html(userEvent.text);
-//   } else {
-//     setEvent();
-//   }
-// };
+var loadEvent = function () {
+  var userEvent = JSON.parse(localStorage.getItem("userEvent"));
+  if (!userEvent) {
+    userEvent = [];
+  }
+  console.log(userEvent)
+
+  if (userEvent) {
+    text.textContent = userEvent.text;
+  }
+
+};
 //this will let me select all the textareas
 var getText = function () {
   $(".time-block").on("click", "textarea", function () {
@@ -46,13 +47,19 @@ var saveText = function () {
     
     console.log(text);
 
-    var status = $(this)
-    .closest(".time-block")
-    .attr("id");
-    console.log(status);
+    var userEvent = {
+      text: text,
+    };
 
-    var index = $(this).closest(".time-block").index();
-    console.log(index);
+    localStorage.setItem("userEvent", JSON.stringify(userEvent));
+
+    // var status = $(this)
+    // .closest(".time-block")
+    // .attr("id");
+    // console.log(status);
+
+    // var index = $(this).closest(".time-block").index();
+    // console.log(index);
   });
 };
 
