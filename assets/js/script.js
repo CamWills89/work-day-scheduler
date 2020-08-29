@@ -6,14 +6,11 @@ var currentDay = $("#currentDay").text(today);
 function checkTime() {
   //get current time in hours
   var currentHour = moment().hour();
-  console.log(currentHour)
 
   // loop over time blocks
   $(".time-block").each(function () {
-    
-    var hour = parseInt($(this).attr("id").split("time")[1])
-      // console.log(this)
-      console.log(hour)
+    //grabbing time block and converting it to a number to compare against current time
+    var hour = parseInt($(this).attr("id").split("time")[1]);
 
       //check if we've moved past this timeblock
       if (hour < currentHour) {
@@ -33,16 +30,17 @@ function checkTime() {
           $(this).removeClass("past");
           $(this).addClass("future");
       }
-  })
-}
-
+  });
+};
+  //saving event to localStorage when save button click
   $(".saveBtn").on("click", function () {
     var id = $(this).parent().attr("id");
     var text = $(this).siblings(".description").val();
 
     localStorage.setItem(id, text);
   });
-
+  
+//Each time block will have it's event persist if the is one
 $("#time9 .description").val(localStorage.getItem("time9"));
 $("#time10 .description").val(localStorage.getItem("time10"));
 $("#time11 .description").val(localStorage.getItem("time11"));
@@ -54,57 +52,3 @@ $("#time16 .description").val(localStorage.getItem("time16"));
 $("#time17 .description").val(localStorage.getItem("time17"));
 
 checkTime();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var hour = parseInt($(this).attr("id").split("time")[1]);
