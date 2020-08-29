@@ -7,9 +7,9 @@ function checkTime() {
   //get current time in hours
   var currentHour = moment().hour();
 
-  // loop over time blocks
+  //checking each time block
   $(".time-block").each(function () {
-    //grabbing time block and converting it to a number to compare against current time
+    //grabbing time string and converting it to a number to compare against current time
     var hour = parseInt($(this).attr("id").split("time")[1]);
 
       //check if we've moved past this timeblock
@@ -40,7 +40,7 @@ function checkTime() {
     localStorage.setItem(id, text);
   });
   
-//Each time block will have it's event persist if the is one
+//Each time block will have it's event persist if there is an event saved
 $("#time9 .description").val(localStorage.getItem("time9"));
 $("#time10 .description").val(localStorage.getItem("time10"));
 $("#time11 .description").val(localStorage.getItem("time11"));
